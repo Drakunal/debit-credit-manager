@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "758833377377",
+    "project_id": "debit-credit-4b622",
+    "storage_bucket": "debit-credit-4b622.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:758833377377:android:4c8a1c7473e40ce4247a20",
+        "android_client_info": {
+          "package_name": "com.drakunal.savings"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "758833377377-ebtb8bg0b5gseulecq4vuc74hsmkqvl3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhVHRTg4l7e6Ma5f7HWRgN0RHSAeT8rBI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "758833377377-ebtb8bg0b5gseulecq4vuc74hsmkqvl3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
