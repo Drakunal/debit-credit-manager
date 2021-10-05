@@ -1,5 +1,6 @@
 import 'package:debit_credit/screens/home.dart';
 import 'package:debit_credit/screens/signin.dart';
+import 'package:debit_credit/screens/wrapper.dart';
 import 'package:debit_credit/services/authenticate.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,7 +20,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) => ChangeNotifierProvider(
         create: (context) => Authenticate(),
         child: MaterialApp(
-          home: SignIn(),
+          home: Wrapper(),
         ),
       );
 }
