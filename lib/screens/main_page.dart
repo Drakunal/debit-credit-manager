@@ -13,7 +13,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.red,
+        color: Colors.white,
         child: Center(
           child: Text("HOME"),
           // child: Column(

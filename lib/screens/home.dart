@@ -24,7 +24,8 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: CurvedNavigationBar(
         index: 1,
         key: _bottomNavigationKey,
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.white,
+        color: Colors.blueAccent,
         items: <Widget>[
           Icon(Icons.account_circle_outlined, size: 30),
           Icon(Icons.home, size: 30),
