@@ -2,6 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:debit_credit/screens/main_page.dart';
 import 'package:debit_credit/screens/profile.dart';
 import 'package:debit_credit/screens/settings.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -12,6 +13,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final user = FirebaseAuth.instance.currentUser!;
   int _page = 1;
   final screens = [Profile(), MainPage(), Settings()];
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
@@ -38,25 +40,6 @@ class _HomeState extends State<Home> {
         },
       ),
       body: screens[_page],
-      // body: Container(
-      //   color: Colors.red,
-      //   child: Center(
-      //     child: Column(
-      //       children: <Widget>[
-      //         Text(_page.toString(), textScaleFactor: 10.0),
-      //         ElevatedButton(
-      //           child: Text('Go To Page of index 1'),
-      //           onPressed: () {
-      //             //Page change using state does the same as clicking index 1 navigation button
-      //             final CurvedNavigationBarState? navBarState =
-      //                 _bottomNavigationKey.currentState;
-      //             navBarState?.setPage(1);
-      //           },
-      //         )
-      //       ],
-      //     ),
-      //   ),
-      // ),
     );
   }
 }
