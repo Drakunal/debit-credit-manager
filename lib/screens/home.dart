@@ -2,8 +2,10 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:debit_credit/screens/main_page.dart';
 import 'package:debit_credit/screens/profile.dart';
 import 'package:debit_credit/screens/settings.dart';
+import 'package:debit_credit/services/authenticate.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -22,6 +24,27 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Savings++"),
+        actions: [
+          Row(
+            children: [
+              TextButton(
+                  onPressed: () {
+                    final provider =
+                        Provider.of<Authenticate>(context, listen: false);
+                    provider.logout();
+                  },
+                  child: Row(
+                    children: [
+                      Text("Logout ", style: TextStyle(color: Colors.white)),
+                      Icon(
+                        Icons.logout,
+                        color: Colors.white,
+                      )
+                    ],
+                  )),
+            ],
+          )
+        ],
       ),
       bottomNavigationBar: CurvedNavigationBar(
         index: 1,
@@ -42,4 +65,6 @@ class _HomeState extends State<Home> {
       body: screens[_page],
     );
   }
+
+  void _a() {}
 }
