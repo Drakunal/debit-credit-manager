@@ -1,8 +1,8 @@
 class Transaction {
-  String details;
-  String type;
-  double amount;
-  DateTime date;
+  final String details;
+  final String type;
+  final double amount;
+  final DateTime date;
   Transaction(
       {required this.amount,
       required this.date,
