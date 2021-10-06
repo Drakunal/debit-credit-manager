@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
+import 'package:debit_credit/services/database.dart';
 
 class Addition extends StatefulWidget {
   const Addition({Key? key}) : super(key: key);
@@ -9,6 +11,7 @@ class Addition extends StatefulWidget {
 }
 
 class _AdditionState extends State<Addition> {
+  final user = FirebaseAuth.instance.currentUser!;
   final _formKey = GlobalKey<FormState>();
   List modes = ["Debit", "Credit", "Loan given", "Loan taken"];
   String _modeSelected = "";
@@ -116,11 +119,14 @@ class _AdditionState extends State<Addition> {
                 ),
                 Spacer(),
                 ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       print("Details $_details");
                       print("Amount $_amount");
                       print("Mode $_modeSelected");
                       print("Date $_date");
+                      await DatabaseService(uid: user.uid).updateTransaction(
+                          _details, _modeSelected, _amount, _date);
+                      Navigator.pop(context);
                     },
                     child: Text("Add")),
                 Spacer(),
