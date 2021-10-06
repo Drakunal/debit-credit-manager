@@ -10,6 +10,8 @@ class Addition extends StatefulWidget {
 
 class _AdditionState extends State<Addition> {
   final _formKey = GlobalKey<FormState>();
+  List modes = ["Debit", "Credit", "Loan given", "Loan taken"];
+  String _modeSelected = "";
   String _task = "";
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,27 @@ class _AdditionState extends State<Addition> {
             child: Column(
               children: [
                 Text("Add New Transaction Here"),
+                Spacer(),
+                DropdownButtonFormField(
+                  decoration: const InputDecoration(
+                    hintStyle: TextStyle(color: Colors.black45),
+                    errorStyle: TextStyle(color: Colors.redAccent),
+                    border: OutlineInputBorder(),
+                    suffixIcon: Icon(Icons.person),
+                    labelText: 'Transaction Type',
+                  ),
+                  items: modes.map((mode) {
+                    return DropdownMenuItem(
+                      value: mode,
+                      child: Text("$mode"),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      _modeSelected = value.toString();
+                    });
+                  },
+                ),
                 Spacer(),
                 TextFormField(
                   decoration: const InputDecoration(
