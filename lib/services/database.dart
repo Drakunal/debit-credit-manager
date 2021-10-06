@@ -34,11 +34,20 @@ class DatabaseService {
 
   List<t.Transaction> _transactionListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
+      // print(doc.get('amount'));
       return t.Transaction(
           amount: doc.get('amount') ?? 0,
           details: doc.get('details') ?? ' ',
           type: doc.get('mode') ?? '',
           date: doc.get('date') ?? DateTime.now());
     }).toList();
+  }
+
+  onPressed() {
+    transactionCollection.get().then((querySnapshot) {
+      querySnapshot.docs.forEach((result) {
+        print(result.data());
+      });
+    });
   }
 }

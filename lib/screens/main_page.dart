@@ -1,7 +1,9 @@
 import 'package:debit_credit/screens/addition_page.dart';
 import 'package:debit_credit/screens/transaction_list.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:debit_credit/services/database.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -11,6 +13,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  final user = FirebaseAuth.instance.currentUser!;
   _addTransaction() {
     showModalBottomSheet(context: context, builder: (context) => Addition());
   }
@@ -29,6 +32,9 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        // onPressed: DatabaseService(
+        //   uid: user.uid,
+        // ).onPressed(),
         onPressed: _addTransaction,
         child: Icon(Icons.add),
       ),

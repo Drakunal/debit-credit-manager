@@ -2,6 +2,7 @@ import 'package:debit_credit/screens/home.dart';
 import 'package:debit_credit/screens/signin.dart';
 import 'package:debit_credit/screens/wrapper.dart';
 import 'package:debit_credit/services/authenticate.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -9,8 +10,11 @@ import 'package:provider/provider.dart';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // final user = FirebaseAuth.instance.currentUser!;
+
   await Firebase.initializeApp();
   runApp(App());
+  // StreamProvider<User>.value(value: null, initialData: user, child: App()));
 }
 
 class App extends StatelessWidget {
