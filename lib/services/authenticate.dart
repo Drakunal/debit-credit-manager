@@ -30,7 +30,12 @@ class Authenticate extends ChangeNotifier {
   }
 
   Future logout() async {
-    await googleSignIn.disconnect();
-    FirebaseAuth.instance.signOut();
+    try {
+      await googleSignIn.disconnect();
+      FirebaseAuth.instance.signOut();
+    } on Exception catch (e) {
+      // TODO
+      print(e.toString());
+    }
   }
 }
