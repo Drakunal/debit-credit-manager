@@ -13,6 +13,10 @@ class _AdditionState extends State<Addition> {
   List modes = ["Debit", "Credit", "Loan given", "Loan taken"];
   String _modeSelected = "";
   String _task = "";
+  String _details = "";
+  double _amount = 0.0;
+  late DateTime _date;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -63,7 +67,7 @@ class _AdditionState extends State<Addition> {
                       value!.isEmpty ? 'Enter transaction details' : null,
                   onChanged: (value) {
                     setState(() {
-                      _task = value;
+                      _details = value.toString();
                     });
                   },
                 ),
@@ -87,7 +91,7 @@ class _AdditionState extends State<Addition> {
                       value!.isEmpty ? 'Enter the amount' : null,
                   onChanged: (value) {
                     setState(() {
-                      _task = value;
+                      _amount = double.parse(value);
                     });
                   },
                 ),
@@ -105,11 +109,20 @@ class _AdditionState extends State<Addition> {
                   // validator: (e) =>
                   //     (e?.day ?? 0) == 1 ? 'Please not the first day' : null,
                   onDateSelected: (DateTime value) {
-                    print(value);
+                    setState(() {
+                      _date = value;
+                    });
                   },
                 ),
                 Spacer(),
-                ElevatedButton(onPressed: null, child: Text("Add")),
+                ElevatedButton(
+                    onPressed: () {
+                      print("Details $_details");
+                      print("Amount $_amount");
+                      print("Mode $_modeSelected");
+                      print("Date $_date");
+                    },
+                    child: Text("Add")),
                 Spacer(),
               ],
             ),
