@@ -1,4 +1,5 @@
 import 'package:debit_credit/screens/addition_page.dart';
+import 'package:debit_credit/screens/transaction_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +35,7 @@ class _MainPageState extends State<MainPage> {
       body: Container(
         color: Colors.white,
         child: Center(
-          child: Text("HOME"),
+          child: TransactionList(),
         ),
       ),
     );
