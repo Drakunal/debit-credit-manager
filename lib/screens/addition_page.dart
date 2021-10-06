@@ -51,7 +51,7 @@ class _AdditionState extends State<Addition> {
                     hintStyle: TextStyle(color: Colors.black45),
                     errorStyle: TextStyle(color: Colors.redAccent),
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(Icons.money),
+                    suffixIcon: Icon(Icons.text_snippet_outlined),
                     labelText: 'Transaction Details',
                   ),
                   // initialValue: userData!.name,
@@ -108,6 +108,8 @@ class _AdditionState extends State<Addition> {
                     print(value);
                   },
                 ),
+                Spacer(),
+                ElevatedButton(onPressed: null, child: Text("Add")),
                 Spacer(),
               ],
             ),
