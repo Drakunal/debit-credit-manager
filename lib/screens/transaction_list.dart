@@ -1,4 +1,6 @@
 import 'package:debit_credit/models/transaction.dart' as t;
+import 'package:debit_credit/services/database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,6 +12,14 @@ class TransactionList extends StatefulWidget {
 }
 
 class _TransactionListState extends State<TransactionList> {
+  final user = FirebaseAuth.instance.currentUser!;
+  @override
+  void initState() {
+    // TODO: implement initState
+    DatabaseService(uid: user.uid).onPressed();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final transactions = Provider.of<List<t.Transaction>?>(context);

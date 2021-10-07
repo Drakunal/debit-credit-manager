@@ -1,4 +1,5 @@
 import 'package:debit_credit/screens/addition_page.dart';
+import 'package:debit_credit/screens/dummy.dart';
 import 'package:debit_credit/screens/transaction_list.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -42,6 +43,7 @@ class _MainPageState extends State<MainPage> {
         color: Colors.white,
         child: Center(
           child: TransactionList(),
+          // child: DatabaseService(uid: user.uid).onPressed(),
         ),
       ),
     );

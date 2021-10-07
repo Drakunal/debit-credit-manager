@@ -43,11 +43,18 @@ class DatabaseService {
     }).toList();
   }
 
-  onPressed() {
-    transactionCollection.get().then((querySnapshot) {
-      querySnapshot.docs.forEach((result) {
-        print(result.data());
+  onPressed() async {
+    try {
+      await transactionCollection
+          .where('mode', isEqualTo: 'Credit')
+          .get()
+          .then((querySnapshot) {
+        querySnapshot.docs.forEach((result) {
+          print(result.data());
+        });
       });
-    });
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }
