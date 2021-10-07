@@ -18,7 +18,7 @@ class _AdditionState extends State<Addition> {
   String _task = "";
   String _details = "";
   double _amount = 0.0;
-  late DateTime _date;
+  DateTime _date = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -40,12 +40,15 @@ class _AdditionState extends State<Addition> {
                     suffixIcon: Icon(Icons.person),
                     labelText: 'Transaction Type',
                   ),
+                  value: "Credit",
                   items: modes.map((mode) {
                     return DropdownMenuItem(
                       value: mode,
                       child: Text("$mode"),
                     );
                   }).toList(),
+                  //  validator: (value) =>
+                  //     value!.isEmpty ? 'Enter the amount' : null,
                   onChanged: (value) {
                     setState(() {
                       _modeSelected = value.toString();
@@ -111,6 +114,8 @@ class _AdditionState extends State<Addition> {
                   autovalidateMode: AutovalidateMode.always,
                   // validator: (e) =>
                   //     (e?.day ?? 0) == 1 ? 'Please not the first day' : null,
+                  //  validator: (value) =>
+                  //     value!. ? 'Select a date' : null,
                   onDateSelected: (DateTime value) {
                     setState(() {
                       _date = value;
@@ -120,13 +125,21 @@ class _AdditionState extends State<Addition> {
                 Spacer(),
                 ElevatedButton(
                     onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        // if (_currentName == '') {
+                        //   _currentName = userData.name;
+                        // }
+                        // if (_currentSugar == '-1') {
+                        //   _currentSugar = userData.sugar;
+                        // }
+                        await DatabaseService(uid: user.uid).updateTransaction(
+                            _details, _modeSelected, _amount, _date);
+                        Navigator.pop(context);
+                      }
                       print("Details $_details");
                       print("Amount $_amount");
                       print("Mode $_modeSelected");
                       print("Date $_date");
-                      await DatabaseService(uid: user.uid).updateTransaction(
-                          _details, _modeSelected, _amount, _date);
-                      Navigator.pop(context);
                     },
                     child: Text("Add")),
                 Spacer(),
