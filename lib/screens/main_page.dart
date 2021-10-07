@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:debit_credit/services/database.dart';
+import 'package:provider/provider.dart';
+import 'package:debit_credit/models/transaction.dart' as t;
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -31,19 +33,23 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        // onPressed: DatabaseService(
-        //   uid: user.uid,
-        // ).onPressed(),
-        onPressed: _addTransaction,
-        child: Icon(Icons.add),
-      ),
-      body: Container(
-        color: Colors.white,
-        child: Center(
-          child: TransactionList(),
-          // child: DatabaseService(uid: user.uid).onPressed(),
+    return StreamProvider<List<t.Transaction>?>.value(
+      initialData: null,
+      value: DatabaseService(uid: 'uid').transactions,
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          // onPressed: DatabaseService(
+          //   uid: user.uid,
+          // ).onPressed(),
+          onPressed: _addTransaction,
+          child: Icon(Icons.add),
+        ),
+        body: Container(
+          color: Colors.white,
+          child: Center(
+            child: TransactionList(),
+            // child: DatabaseService(uid: user.uid).onPressed(),
+          ),
         ),
       ),
     );

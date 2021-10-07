@@ -39,22 +39,32 @@ class DatabaseService {
           amount: doc.get('amount') ?? 0,
           details: doc.get('details') ?? ' ',
           type: doc.get('mode') ?? '',
-          date: doc.get('date') ?? DateTime.now());
+          date: DateTime.now());
     }).toList();
   }
 
-  onPressed() async {
-    try {
-      await transactionCollection
-          .where('mode', isEqualTo: 'Credit')
-          .get()
-          .then((querySnapshot) {
-        querySnapshot.docs.forEach((result) {
-          print(result.data());
-        });
-      });
-    } catch (e) {
-      print(e.toString());
-    }
+  Stream<List<t.Transaction>> onPressed() {
+    // try {
+
+    return transactionCollection
+        .where('mode', isEqualTo: 'Credit')
+        .snapshots()
+        // .get()
+        .map(_transactionListFromSnapshot);
+    // return _transactionListFromSnapshot(
+    //     transactionCollection.where('mode', isEqualTo: 'Credit').get());
+
+    // return transactionCollection
+    //     .where('mode', isEqualTo: 'Credit')
+    //     .get()
+    //     .then((querySnapshot) {
+    //   // querySnapshot.docs.forEach((result) {
+    //   _transactionListFromSnapshot(querySnapshot);
+    //   // }
+    //   // );
+    // });
+    // } catch (e) {
+    //   print(e.toString());
+    // }
   }
 }

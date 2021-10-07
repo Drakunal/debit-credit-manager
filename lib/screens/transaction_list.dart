@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:debit_credit/models/transaction.dart' as t;
 import 'package:debit_credit/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,20 +13,31 @@ class TransactionList extends StatefulWidget {
 }
 
 class _TransactionListState extends State<TransactionList> {
+  late Stream<List<t.Transaction>?> data;
   final user = FirebaseAuth.instance.currentUser!;
   @override
   void initState() {
     // TODO: implement initState
-    DatabaseService(uid: user.uid).onPressed();
+    data = DatabaseService(uid: user.uid).onPressed();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    int count = 0;
     final transactions = Provider.of<List<t.Transaction>?>(context);
-    int len;
+    // print(data.then((value) => value!.docs.forEach((result) {
+    //       print(result.data());
+    //     })));
+
+    // data.docs.forEach((result) {
+    //   print(result.data());
+    // });
+    int len = 0;
+    print(transactions);
     if (transactions != null) {
       len = transactions.length;
+      // print(data.length.toString());
       transactions.forEach((transaction) {
         print(transaction.date);
         print(transaction.details);
@@ -38,7 +50,7 @@ class _TransactionListState extends State<TransactionList> {
     print(len);
 
     return ListView.builder(
-        itemCount: 2,
+        itemCount: len,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
@@ -47,9 +59,9 @@ class _TransactionListState extends State<TransactionList> {
               shadowColor: Colors.black,
               color: Colors.brown[100],
               child: ListTile(
-                title: Text('transactions[index].details'),
+                title: Text(transactions![index].details),
                 // title: Text(transactions.docs[index]['strength'].toString()),
-                subtitle: Text('transactions[index].amount.toString()'),
+                subtitle: Text(transactions[index].amount.toString()),
                 // trailing: const Text("..."),
                 onTap: () {
                   // Navigator.push(
