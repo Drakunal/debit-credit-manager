@@ -29,7 +29,11 @@ class DatabaseService {
   }
 
   Stream<List<t.Transaction>> get transactions {
-    return transactionCollection.snapshots().map(_transactionListFromSnapshot);
+    print("Hi this is the $uid");
+    return transactionCollection
+        .where('userId', isEqualTo: uid)
+        .snapshots()
+        .map(_transactionListFromSnapshot);
   }
 
   List<t.Transaction> _transactionListFromSnapshot(QuerySnapshot snapshot) {

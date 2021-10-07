@@ -35,7 +35,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return StreamProvider<List<t.Transaction>?>.value(
       initialData: null,
-      value: DatabaseService(uid: 'uid').transactions,
+      value: DatabaseService(uid: user.uid).transactions,
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           // onPressed: DatabaseService(
