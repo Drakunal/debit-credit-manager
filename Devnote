@@ -1,4 +1,5 @@
---07/10/2021 Data shown with respect to the user, stream builder implemented
+--07/10/2021 User data display done
+--07/10/2021 Data shown with respect to the user, stream builder
 --07/10/2021 Query snapshot has to kept in the init state to execute and future type
 --06/10/2021 Transaction added in collection in firestore
 --06/10/2021 Transaction model created

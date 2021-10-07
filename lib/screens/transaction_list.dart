@@ -4,6 +4,7 @@ import 'package:debit_credit/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class TransactionList extends StatefulWidget {
   const TransactionList({Key? key}) : super(key: key);
@@ -38,12 +39,12 @@ class _TransactionListState extends State<TransactionList> {
     if (transactions != null) {
       len = transactions.length;
       // print(data.length.toString());
-      transactions.forEach((transaction) {
-        print(transaction.date);
-        print(transaction.details);
-        print(transaction.type);
-        print(transaction.amount);
-      });
+      // transactions.forEach((transaction) {
+      //   print(transaction.date);
+      //   print(transaction.details);
+      //   print(transaction.type);
+      //   print(transaction.amount);
+      // });
     } else {
       len = 0;
     }
@@ -57,11 +58,19 @@ class _TransactionListState extends State<TransactionList> {
             child: Card(
               elevation: 4.5,
               shadowColor: Colors.black,
-              color: Colors.brown[100],
+              color: Colors.grey[100],
               child: ListTile(
                 title: Text(transactions![index].details),
                 // title: Text(transactions.docs[index]['strength'].toString()),
-                subtitle: Text(transactions[index].amount.toString()),
+                subtitle: Text(transactions[index].type),
+                trailing: Column(
+                  children: [
+                    Text(DateFormat('dd/mm/yyyy')
+                        .format(transactions[index].date)
+                        .toString()),
+                    Text(transactions[index].amount.round().toString()),
+                  ],
+                ),
                 // trailing: const Text("..."),
                 onTap: () {
                   // Navigator.push(

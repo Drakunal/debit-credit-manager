@@ -43,7 +43,7 @@ class DatabaseService {
           amount: doc.get('amount') ?? 0,
           details: doc.get('details') ?? ' ',
           type: doc.get('mode') ?? '',
-          date: DateTime.now());
+          date: doc.get('date').toDate() ?? DateTime.now());
     }).toList();
   }
 
