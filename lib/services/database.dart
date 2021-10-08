@@ -32,6 +32,7 @@ class DatabaseService {
     print("Hi this is the $uid");
     return transactionCollection
         .where('userId', isEqualTo: uid)
+        .orderBy('date')
         .snapshots()
         .map(_transactionListFromSnapshot);
   }

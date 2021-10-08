@@ -65,10 +65,10 @@ class _TransactionListState extends State<TransactionList> {
                 subtitle: Text(transactions[index].type),
                 trailing: Column(
                   children: [
-                    Text(DateFormat('dd/mm/yyyy')
-                        .format(transactions[index].date)
-                        .toString()),
-                    Text(transactions[index].amount.round().toString()),
+                    Text(
+                        'Transaction date: ${DateFormat('dd/MM/yyyy').format(transactions[index].date).toString()}'),
+                    Spacer(),
+                    Text('₹ ${transactions[index].amount.round().toString()}'),
                   ],
                 ),
                 // trailing: const Text("..."),

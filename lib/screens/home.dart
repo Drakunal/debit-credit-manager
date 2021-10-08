@@ -50,7 +50,7 @@ class _HomeState extends State<Home> {
         index: 1,
         key: _bottomNavigationKey,
         backgroundColor: Colors.white,
-        color: Colors.blueAccent,
+        color: Colors.blue,
         items: <Widget>[
           Icon(Icons.account_circle_outlined, size: 30),
           Icon(Icons.home, size: 30),

@@ -14,7 +14,7 @@ class _AdditionState extends State<Addition> {
   final user = FirebaseAuth.instance.currentUser!;
   final _formKey = GlobalKey<FormState>();
   List modes = ["Debit", "Credit", "Loan given", "Loan taken"];
-  String _modeSelected = "";
+  String _modeSelected = "Credit";
   String _task = "";
   String _details = "";
   double _amount = 0.0;

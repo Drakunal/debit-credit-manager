@@ -34,6 +34,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<List<t.Transaction>?>.value(
+      catchError: (_, __) => null,
       initialData: null,
       value: DatabaseService(uid: user.uid).transactions,
       child: Scaffold(

@@ -21,6 +21,20 @@ class _ProfileState extends State<Profile> {
             Spacer(),
             Text("PROFILE"),
             Spacer(),
+            // CircleAvatar(
+            //   backgroundColor: Colors.amberAccent,
+            //   child: Container(
+            //     // width: 100,
+            //     // height: 100,
+            //     decoration: BoxDecoration(
+            //         image: DecorationImage(
+            //             scale: 0.5,
+            //             image: NetworkImage(user.photoURL!),
+            //             fit: BoxFit.cover),
+            //         borderRadius: BorderRadius.circular(50)),
+            //     child: null,
+            //   ),
+            // ),
             Image(image: NetworkImage(user.photoURL!)),
             Spacer(),
             Text("Name: " + user.displayName!),
