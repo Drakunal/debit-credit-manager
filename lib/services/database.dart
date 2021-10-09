@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:debit_credit/models/transaction.dart' as t;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:debit_credit/shared/hexcolor.dart';
+import 'package:flutter/material.dart';
 
 class DatabaseService {
   final String uid;
@@ -26,7 +27,7 @@ class DatabaseService {
       'mode': mode,
       'amount': amount,
       'date': date,
-      'star': HexColor('#FF0000')
+      'star': '#FF0000'
     });
   }
 
@@ -42,12 +43,13 @@ class DatabaseService {
   List<t.Transaction> _transactionListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
       // print(doc.get('amount'));
+      Color temp = HexColor(doc.get('star') ?? '#FF0000');
       return t.Transaction(
           amount: doc.get('amount') ?? 0,
           details: doc.get('details') ?? ' ',
           type: doc.get('mode') ?? '',
           date: doc.get('date').toDate() ?? DateTime.now(),
-          star: HexColor('#FF0000'));
+          star: temp);
     }).toList();
   }
 
