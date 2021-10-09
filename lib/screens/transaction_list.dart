@@ -17,7 +17,6 @@ class TransactionList extends StatefulWidget {
 class _TransactionListState extends State<TransactionList> {
   late Stream<List<t.Transaction>?> data;
   final user = FirebaseAuth.instance.currentUser!;
-  Color _star_color = HexColor("#FFFF00");
   @override
   void initState() {
     // TODO: implement initState
@@ -64,14 +63,10 @@ class _TransactionListState extends State<TransactionList> {
               child: ListTile(
                 title: Text(transactions![index].details),
                 // title: Text(transactions.docs[index]['strength'].toString()),
-                subtitle: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                        '${transactions[index].type}: ${DateFormat('dd/MM/yyyy').format(transactions[index].date).toString()}'),
+                subtitle: Text(
+                    '${transactions[index].type}: ${DateFormat('dd/MM/yyyy').format(transactions[index].date).toString()}'),
+                leading:
                     Text('₹ ${transactions[index].amount.round().toString()}'),
-                  ],
-                ),
 
                 trailing: Column(
                   children: [
@@ -109,13 +104,13 @@ class _TransactionListState extends State<TransactionList> {
 
   _starToggle(String id, Color star) {
     String s = '';
-    if (star == HexColor('#FF0000')) {
-      star = HexColor('#00FF00');
-      s = '#00FF00';
-      print(star.toString());
+    if (star == HexColor('#808080')) {
+      // star = HexColor('#ffbf00');
+      s = '#ffbf00';
+      // print(star.toString());
     } else {
-      star = HexColor('#FF0000');
-      s = '#FF0000';
+      // star = HexColor('#808080');
+      s = '#808080';
       print(star.toString());
     }
     DatabaseService(uid: id).updateStar(s);

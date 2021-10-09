@@ -27,12 +27,12 @@ class DatabaseService {
       'mode': mode,
       'amount': amount,
       'date': date,
-      'star': '#FF0000'
+      'star': '#808080'
     });
   }
 
   Stream<List<t.Transaction>> get transactions {
-    print("Hi this is the $uid");
+    // print("Hi this is the $uid");
     return transactionCollection
         .where('userId', isEqualTo: uid)
         .orderBy('date')
@@ -42,8 +42,8 @@ class DatabaseService {
 
   List<t.Transaction> _transactionListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
-      print(doc.id);
-      Color temp = HexColor(doc.get('star') ?? '#FF0000');
+      // print(doc.id);
+      Color temp = HexColor(doc.get('star') ?? '#808080');
       return t.Transaction(
           id: doc.id,
           amount: doc.get('amount') ?? 0,
