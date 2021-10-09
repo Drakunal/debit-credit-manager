@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:debit_credit/models/transaction.dart' as t;
 import 'package:debit_credit/services/database.dart';
+import 'package:debit_credit/shared/hexcolor.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,7 @@ class TransactionList extends StatefulWidget {
 class _TransactionListState extends State<TransactionList> {
   late Stream<List<t.Transaction>?> data;
   final user = FirebaseAuth.instance.currentUser!;
+  Color _star_color = HexColor("#FFFF00");
   @override
   void initState() {
     // TODO: implement initState
@@ -62,13 +64,27 @@ class _TransactionListState extends State<TransactionList> {
               child: ListTile(
                 title: Text(transactions![index].details),
                 // title: Text(transactions.docs[index]['strength'].toString()),
-                subtitle: Text(transactions[index].type),
-                trailing: Column(
+                subtitle: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                        'Transaction date: ${DateFormat('dd/MM/yyyy').format(transactions[index].date).toString()}'),
-                    Spacer(),
+                        '${transactions[index].type}: ${DateFormat('dd/MM/yyyy').format(transactions[index].date).toString()}'),
                     Text('₹ ${transactions[index].amount.round().toString()}'),
+                  ],
+                ),
+
+                trailing: Column(
+                  children: [
+                    // Text(
+                    //     '${DateFormat('dd/MM/yyyy').format(transactions[index].date).toString()}'),
+                    // Text('₹ ${transactions[index].amount.round().toString()}'),
+                    IconButton(
+                      onPressed: _starToggle,
+                      icon: Icon(
+                        Icons.star,
+                        color: transactions[index].star,
+                      ),
+                    ),
                   ],
                 ),
                 // trailing: const Text("..."),
@@ -88,4 +104,6 @@ class _TransactionListState extends State<TransactionList> {
           );
         });
   }
+
+  void _starToggle() {}
 }

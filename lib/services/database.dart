@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:debit_credit/models/transaction.dart' as t;
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:debit_credit/shared/hexcolor.dart';
 
 class DatabaseService {
   final String uid;
@@ -24,7 +25,8 @@ class DatabaseService {
       'details': details,
       'mode': mode,
       'amount': amount,
-      'date': date
+      'date': date,
+      'star': HexColor('#FF0000')
     });
   }
 
@@ -44,7 +46,8 @@ class DatabaseService {
           amount: doc.get('amount') ?? 0,
           details: doc.get('details') ?? ' ',
           type: doc.get('mode') ?? '',
-          date: doc.get('date').toDate() ?? DateTime.now());
+          date: doc.get('date').toDate() ?? DateTime.now(),
+          star: HexColor('#FF0000'));
     }).toList();
   }
 
