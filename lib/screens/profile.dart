@@ -14,8 +14,8 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          children: [Spacer(), _getAvatar(), _getCard(), Spacer()],
+        child: Stack(
+          children: [_getCard(), _getAvatar()],
         ),
       ),
     );
@@ -93,44 +93,61 @@ class _ProfileState extends State<Profile> {
     // );
   }
 
-  Container _getAvatar() {
-    return Container(
-      width: 100,
-      height: 100,
-      decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.all(Radius.circular(50)),
-          border: Border.all(color: Colors.blueAccent, width: 2),
-          image: DecorationImage(
-              image: NetworkImage(user.photoURL!), fit: BoxFit.cover)),
+  Row _getAvatar() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width * 0.24,
+          height: MediaQuery.of(context).size.width * 0.24,
+          decoration: BoxDecoration(
+              color: Colors.grey,
+              borderRadius: BorderRadius.all(
+                  Radius.circular(MediaQuery.of(context).size.width * 0.24)),
+              border: Border.all(color: Colors.blueAccent.shade100, width: 2),
+              image: DecorationImage(
+                  image: NetworkImage(user.photoURL!), fit: BoxFit.cover)),
+        ),
+      ],
     );
   }
 
-  Container _getCard() {
-    return Container(
-        width: 350,
-        height: 200,
-        margin: EdgeInsets.all(50),
-        decoration: BoxDecoration(
-          color: Colors.blueAccent,
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              user.displayName.toString(),
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+  Row _getCard() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Container(
+            width: MediaQuery.of(context).size.width * 0.7,
+            height: MediaQuery.of(context).size.height * 0.25,
+            margin:
+                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.08),
+            decoration: BoxDecoration(
+              color: Colors.blueAccent.shade100,
+              borderRadius: BorderRadius.circular(15),
             ),
-            Text(user.email.toString(),
-                style: TextStyle(fontStyle: FontStyle.italic)),
-            Row(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.computer),
+                Spacer(),
+                Text(
+                  user.displayName.toString(),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(user.email.toString(),
+                    style: TextStyle(fontStyle: FontStyle.italic)),
+                Spacer(),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     Icon(Icons.calculate_outlined),
+                //   ],
+                // )
               ],
-            )
-          ],
-        ));
+            )),
+      ],
+    );
   }
 }
