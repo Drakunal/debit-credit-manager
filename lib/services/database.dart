@@ -42,9 +42,10 @@ class DatabaseService {
 
   List<t.Transaction> _transactionListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
-      // print(doc.get('amount'));
+      print(doc.id);
       Color temp = HexColor(doc.get('star') ?? '#FF0000');
       return t.Transaction(
+          id: doc.id,
           amount: doc.get('amount') ?? 0,
           details: doc.get('details') ?? ' ',
           type: doc.get('mode') ?? '',
@@ -76,5 +77,19 @@ class DatabaseService {
     // } catch (e) {
     //   print(e.toString());
     // }
+  }
+
+  Future updateStar(
+      String details, String mode, double amount, DateTime date) async {
+    // return await transactionCollection.doc(uid).set(
+    //     {'details': details, 'mode': mode, 'amount': amount, 'date': date});
+    return await transactionCollection.doc(uid).set({
+      // 'userId': uid,
+      // 'details': details,
+      // 'mode': mode,
+      // 'amount': amount,
+      // 'date': date,
+      'star': '#FF0000'
+    });
   }
 }
