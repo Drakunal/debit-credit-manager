@@ -79,17 +79,16 @@ class DatabaseService {
     // }
   }
 
-  Future updateStar(
-      String details, String mode, double amount, DateTime date) async {
+  Future updateStar(String star) async {
     // return await transactionCollection.doc(uid).set(
     //     {'details': details, 'mode': mode, 'amount': amount, 'date': date});
-    return await transactionCollection.doc(uid).set({
+    return await transactionCollection.doc(uid).update({
       // 'userId': uid,
       // 'details': details,
       // 'mode': mode,
       // 'amount': amount,
       // 'date': date,
-      'star': '#FF0000'
+      'star': star
     });
   }
 }

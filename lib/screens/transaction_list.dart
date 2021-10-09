@@ -79,12 +79,14 @@ class _TransactionListState extends State<TransactionList> {
                     //     '${DateFormat('dd/MM/yyyy').format(transactions[index].date).toString()}'),
                     // Text('₹ ${transactions[index].amount.round().toString()}'),
                     IconButton(
-                      onPressed: _starToggle,
-                      icon: Icon(
-                        Icons.star,
-                        color: transactions[index].star,
-                      ),
-                    ),
+                        icon: Icon(
+                          Icons.star,
+                          color: transactions[index].star,
+                        ),
+                        onPressed: () {
+                          _starToggle(
+                              transactions[index].id, transactions[index].star);
+                        }),
                   ],
                 ),
                 // trailing: const Text("..."),
@@ -105,5 +107,17 @@ class _TransactionListState extends State<TransactionList> {
         });
   }
 
-  void _starToggle() {}
+  _starToggle(String id, Color star) {
+    String s = '';
+    if (star == HexColor('#FF0000')) {
+      star = HexColor('#00FF00');
+      s = '#00FF00';
+      print(star.toString());
+    } else {
+      star = HexColor('#FF0000');
+      s = '#FF0000';
+      print(star.toString());
+    }
+    DatabaseService(uid: id).updateStar(s);
+  }
 }
