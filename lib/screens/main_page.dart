@@ -22,6 +22,15 @@ class _MainPageState extends State<MainPage> {
   _addTransaction() {
     showModalBottomSheet(context: context, builder: (context) => Addition());
   }
+
+  _addMultipleTransaction() {
+    List fakeModes = ['Credit', 'Debit', 'Loan given', 'Loan taken'];
+    for (int i = 0; i < 1000; i++) {
+      DatabaseService(uid: user.uid).updateTransaction("Details number $i",
+          fakeModes[i % 4], (1000 + i).toDouble(), DateTime.now());
+    }
+  }
+
   // void _addTransaction() {
   //   showModalBottomSheet(
   //       context: context,
