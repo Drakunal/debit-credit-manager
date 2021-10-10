@@ -38,7 +38,7 @@ class _MainPageState extends State<MainPage> {
     return StreamProvider<List<t.Transaction>?>.value(
       catchError: (_, __) => null,
       initialData: null,
-      value: DatabaseService(uid: user.uid).transactions,
+      value: DatabaseService(uid: user.uid).transactions(_modeSelected),
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           // onPressed: DatabaseService(
@@ -107,6 +107,7 @@ class _MainPageState extends State<MainPage> {
           onChanged: (value) {
             setState(() {
               _modeSelected = value.toString();
+              // DatabaseService(uid: user.uid).filter(_modeSelected);
             });
           },
         ),

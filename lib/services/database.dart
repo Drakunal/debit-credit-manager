@@ -31,13 +31,32 @@ class DatabaseService {
     });
   }
 
-  Stream<List<t.Transaction>> get transactions {
+  Stream<List<t.Transaction>> transactions(String filterBy) {
     // print("Hi this is the $uid");
-    return transactionCollection
-        .where('userId', isEqualTo: uid)
-        .orderBy('date')
-        .snapshots()
-        .map(_transactionListFromSnapshot);
+    // return transactionCollection
+    //     .where('userId', isEqualTo: uid)
+    //     .orderBy('date')
+    //     .snapshots()
+    //     .map(_transactionListFromSnapshot);
+
+    String filterText = '';
+    if (filterBy == 'Important') {
+      filterText = '#ffbf00';
+      print("Filter Text is $filterBy");
+      return transactionCollection
+          .where('userId', isEqualTo: uid)
+          .where('star', isEqualTo: filterText)
+          .orderBy('date')
+          .snapshots()
+          .map(_transactionListFromSnapshot);
+    } else {
+      print("Filter Text is $filterBy");
+      return transactionCollection
+          .where('userId', isEqualTo: uid)
+          .orderBy('date')
+          .snapshots()
+          .map(_transactionListFromSnapshot);
+    }
   }
 
   List<t.Transaction> _transactionListFromSnapshot(QuerySnapshot snapshot) {
@@ -91,4 +110,33 @@ class DatabaseService {
       'star': star
     });
   }
+
+  // Future filter(String filterBy) async {
+  //   String filterText = '';
+  //   if (filterBy == 'Important') {
+  //     filterText = '#ffbf00';
+  //     return transactionCollection
+  //         .where('userId', isEqualTo: uid)
+  //         .where('star', isEqualTo: filterText)
+  //         .orderBy('date')
+  //         .snapshots()
+  //         .map(_transactionListFromSnapshot);
+  //   } else {
+  //     return transactionCollection
+  //         .where('userId', isEqualTo: uid)
+  //         .orderBy('date')
+  //         .snapshots()
+  //         .map(_transactionListFromSnapshot);
+  //   }
+  //   // return await transactionCollection.doc(uid).set(
+  //   //     {'details': details, 'mode': mode, 'amount': amount, 'date': date});
+  //   // return await transactionCollection.doc(uid).update({
+  //   //   // 'userId': uid,
+  //   //   // 'details': details,
+  //   //   // 'mode': mode,
+  //   //   // 'amount': amount,
+  //   //   // 'date': date,
+  //   //   'star': star
+  //   // });
+  // }
 }
