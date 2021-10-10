@@ -56,6 +56,7 @@ class _MainPageState extends State<MainPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
+                    Text("Filter"),
                     IconButton(
                         onPressed: _filter,
                         icon: Icon(Icons.filter_alt_outlined)),

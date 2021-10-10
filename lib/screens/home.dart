@@ -47,6 +47,8 @@ class _HomeState extends State<Home> {
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(
+        animationDuration: Duration(milliseconds: 400),
+        height: 65,
         index: 1,
         key: _bottomNavigationKey,
         backgroundColor: Colors.white,
