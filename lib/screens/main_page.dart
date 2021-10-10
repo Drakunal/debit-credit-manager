@@ -17,6 +17,8 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   final user = FirebaseAuth.instance.currentUser!;
+  final modes = ["All", "Important"];
+  String _modeSelected = 'All';
   _addTransaction() {
     showModalBottomSheet(context: context, builder: (context) => Addition());
   }
@@ -47,10 +49,66 @@ class _MainPageState extends State<MainPage> {
         ),
         body: Container(
           color: Colors.white,
-          child: Center(
-            child: TransactionList(),
-            // child: DatabaseService(uid: user.uid).onPressed(),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                        onPressed: _filter,
+                        icon: Icon(Icons.filter_alt_outlined)),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: TransactionList(),
+                // child: DatabaseService(uid: user.uid).onPressed(),
+              ),
+            ],
           ),
+        ),
+      ),
+    );
+  }
+
+  _filter() {
+    print("Clicked Filter");
+    // Container(
+    //   child: filterBox(),
+    // );
+
+    showModalBottomSheet(context: context, builder: (context) => filterBox());
+  }
+
+  filterBox() {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: DropdownButtonFormField(
+          decoration: const InputDecoration(
+            contentPadding: EdgeInsets.all(20),
+            // hintStyle: TextStyle(color: Colors.black45),
+            errorStyle: TextStyle(color: Colors.redAccent),
+            border: OutlineInputBorder(),
+            suffixIcon: Icon(Icons.filter_alt_outlined),
+            labelText: 'Filter',
+          ),
+          value: _modeSelected,
+          items: modes.map((mode) {
+            return DropdownMenuItem(
+              value: mode,
+              child: Text("$mode"),
+            );
+          }).toList(),
+          //  validator: (value) =>
+          //     value!.isEmpty ? 'Enter the amount' : null,
+          onChanged: (value) {
+            setState(() {
+              _modeSelected = value.toString();
+            });
+          },
         ),
       ),
     );

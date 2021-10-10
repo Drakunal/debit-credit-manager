@@ -56,47 +56,51 @@ class _TransactionListState extends State<TransactionList> {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Card(
-              elevation: 4.5,
-              shadowColor: Colors.black,
-              color: Colors.grey[100],
-              child: ListTile(
-                title: Text(transactions![index].details),
-                // title: Text(transactions.docs[index]['strength'].toString()),
-                subtitle: Text(
-                    '${transactions[index].type}: ${DateFormat('dd/MM/yyyy').format(transactions[index].date).toString()}'),
-                leading:
-                    Text('₹ ${transactions[index].amount.round().toString()}'),
+            child: Column(
+              children: [
+                Card(
+                  elevation: 4.5,
+                  shadowColor: Colors.black,
+                  color: Colors.grey[100],
+                  child: ListTile(
+                    title: Text(transactions![index].details),
+                    // title: Text(transactions.docs[index]['strength'].toString()),
+                    subtitle: Text(
+                        '${transactions[index].type}: ${DateFormat('dd/MM/yyyy').format(transactions[index].date).toString()}'),
+                    leading: Text(
+                        '₹ ${transactions[index].amount.round().toString()}'),
 
-                trailing: Column(
-                  children: [
-                    // Text(
-                    //     '${DateFormat('dd/MM/yyyy').format(transactions[index].date).toString()}'),
-                    // Text('₹ ${transactions[index].amount.round().toString()}'),
-                    IconButton(
-                        icon: Icon(
-                          Icons.star,
-                          color: transactions[index].star,
-                        ),
-                        onPressed: () {
-                          _starToggle(
-                              transactions[index].id, transactions[index].star);
-                        }),
-                  ],
+                    trailing: Column(
+                      children: [
+                        // Text(
+                        //     '${DateFormat('dd/MM/yyyy').format(transactions[index].date).toString()}'),
+                        // Text('₹ ${transactions[index].amount.round().toString()}'),
+                        IconButton(
+                            icon: Icon(
+                              Icons.star,
+                              color: transactions[index].star,
+                            ),
+                            onPressed: () {
+                              _starToggle(transactions[index].id,
+                                  transactions[index].star);
+                            }),
+                      ],
+                    ),
+                    // trailing: const Text("..."),
+                    onTap: () {
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => MovieListViewDetails(
+                      //               movieName: movieList.elementAt(index).title,
+                      //               movie: movieList[index],
+                      //             )));
+                    },
+                    // onTap: () =>
+                    //     debugPrint("The movie name is ${movies.elementAt(index)}"),
+                  ),
                 ),
-                // trailing: const Text("..."),
-                onTap: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => MovieListViewDetails(
-                  //               movieName: movieList.elementAt(index).title,
-                  //               movie: movieList[index],
-                  //             )));
-                },
-                // onTap: () =>
-                //     debugPrint("The movie name is ${movies.elementAt(index)}"),
-              ),
+              ],
             ),
           );
         });
