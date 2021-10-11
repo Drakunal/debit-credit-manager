@@ -27,7 +27,7 @@ class _MainPageState extends State<MainPage> {
   ];
 
   String _modeSelected = 'All';
-  String _filterMessage = ' ';
+  String _filterMessage = 'Showing all results';
 
   String get _FilterMessage => "Filter by : $_modeSelected";
 
@@ -59,7 +59,7 @@ class _MainPageState extends State<MainPage> {
     if (_modeSelected != 'All') {
       _filterMessage = _FilterMessage;
     } else if (_modeSelected == 'All') {
-      _filterMessage = ' ';
+      _filterMessage = 'Showing all results';
     }
 
     return StreamProvider<List<t.Transaction>?>.value(
@@ -86,7 +86,10 @@ class _MainPageState extends State<MainPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(_filterMessage),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(_filterMessage),
+                        ),
                       ],
                     ),
                     Row(
