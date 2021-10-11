@@ -17,7 +17,14 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   final user = FirebaseAuth.instance.currentUser!;
-  final modes = ["All", "Important"];
+  final modes = [
+    "All",
+    "Important",
+    "Debit",
+    "Credit",
+    "Loan taken",
+    "Loan given"
+  ];
   String _modeSelected = 'All';
   _addTransaction() {
     showModalBottomSheet(context: context, builder: (context) => Addition());

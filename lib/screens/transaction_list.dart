@@ -50,9 +50,9 @@ class _TransactionListState extends State<TransactionList> {
       len = 0;
     }
     print(len);
-    if (len == 0) {
-      return Center(child: CircularProgressIndicator());
-    }
+    // if (len == 0) {
+    //   return Center(child: CircularProgressIndicator());
+    // }
 
     return ListView.builder(
         itemCount: len,

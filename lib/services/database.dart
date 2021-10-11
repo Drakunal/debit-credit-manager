@@ -49,6 +49,17 @@ class DatabaseService {
           .orderBy('date')
           .snapshots()
           .map(_transactionListFromSnapshot);
+    } else if (filterBy == 'Credit' ||
+        filterBy == 'Debit' ||
+        filterBy == 'Loan taken' ||
+        filterBy == 'Loan given') {
+      print("Filter Text is $filterBy");
+      return transactionCollection
+          .where('userId', isEqualTo: uid)
+          .where('mode', isEqualTo: filterBy)
+          .orderBy('date')
+          .snapshots()
+          .map(_transactionListFromSnapshot);
     } else {
       print("Filter Text is $filterBy");
       return transactionCollection
