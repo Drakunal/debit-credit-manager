@@ -25,7 +25,12 @@ class _MainPageState extends State<MainPage> {
     "Loan taken",
     "Loan given"
   ];
+
   String _modeSelected = 'All';
+  String _filterMessage = ' ';
+
+  String get _FilterMessage => "Filter by : $_modeSelected";
+
   _addTransaction() {
     showModalBottomSheet(context: context, builder: (context) => Addition());
   }
@@ -51,6 +56,12 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (_modeSelected != 'All') {
+      _filterMessage = _FilterMessage;
+    } else if (_modeSelected == 'All') {
+      _filterMessage = ' ';
+    }
+
     return StreamProvider<List<t.Transaction>?>.value(
       catchError: (_, __) => null,
       initialData: null,
@@ -70,12 +81,23 @@ class _MainPageState extends State<MainPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Filter"),
-                    IconButton(
-                        onPressed: _filter,
-                        icon: Icon(Icons.filter_alt_outlined)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(_filterMessage),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text("Filter"),
+                        IconButton(
+                            onPressed: _filter,
+                            icon: Icon(Icons.filter_alt_outlined)),
+                      ],
+                    ),
                   ],
                 ),
               ),
