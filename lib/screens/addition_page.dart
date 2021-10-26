@@ -1,3 +1,4 @@
+import 'package:debit_credit/shared/input_decoration.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
@@ -33,12 +34,9 @@ class _AdditionState extends State<Addition> {
                 Text("Add New Transaction Here"),
                 Spacer(),
                 DropdownButtonFormField(
-                  decoration: const InputDecoration(
-                    hintStyle: TextStyle(color: Colors.black45),
-                    errorStyle: TextStyle(color: Colors.redAccent),
-                    border: OutlineInputBorder(),
-                    suffixIcon: Icon(Icons.person),
+                  decoration: textInputDecoration.copyWith(
                     labelText: 'Transaction Type',
+                    suffixIcon: Icon(Icons.person),
                   ),
                   value: "Credit",
                   items: modes.map((mode) {
@@ -57,12 +55,9 @@ class _AdditionState extends State<Addition> {
                 ),
                 Spacer(),
                 TextFormField(
-                  decoration: const InputDecoration(
-                    hintStyle: TextStyle(color: Colors.black45),
-                    errorStyle: TextStyle(color: Colors.redAccent),
-                    border: OutlineInputBorder(),
-                    suffixIcon: Icon(Icons.text_snippet_outlined),
+                  decoration: textInputDecoration.copyWith(
                     labelText: 'Transaction Details',
+                    suffixIcon: Icon(Icons.text_snippet_outlined),
                   ),
                   // initialValue: userData!.name,
                   // userData!.name
@@ -79,13 +74,7 @@ class _AdditionState extends State<Addition> {
                 ),
                 Spacer(),
                 TextFormField(
-                  decoration: const InputDecoration(
-                    hintStyle: TextStyle(color: Colors.black45),
-                    errorStyle: TextStyle(color: Colors.redAccent),
-                    border: OutlineInputBorder(),
-                    suffixIcon: Icon(Icons.money),
-                    labelText: 'Transaction amount',
-                  ),
+                  decoration: textInputDecoration,
                   keyboardType: TextInputType.number,
                   // initialValue: userData!.name,
                   // userData!.name
@@ -103,13 +92,11 @@ class _AdditionState extends State<Addition> {
                 ),
                 Spacer(),
                 DateTimeFormField(
-                  decoration: const InputDecoration(
-                    hintStyle: TextStyle(color: Colors.black45),
-                    errorStyle: TextStyle(color: Colors.redAccent),
-                    border: OutlineInputBorder(),
-                    suffixIcon: Icon(Icons.event_note),
+                  decoration: textInputDecoration.copyWith(
                     labelText: 'Transaction Date',
+                    suffixIcon: Icon(Icons.calendar_today_outlined),
                   ),
+
                   mode: DateTimeFieldPickerMode.date,
                   autovalidateMode: AutovalidateMode.always,
                   // validator: (e) =>
