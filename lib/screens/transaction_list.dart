@@ -130,8 +130,34 @@ class _TransactionListState extends State<TransactionList> {
   void _deleteDialog(String id) {
     showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (context) => AlertDialog(
-              title: Text("Delete this transaction?"),
+              title: Text("Delete"),
+              content: Text(
+                  "Are you sure you want to delete this particular transaction?"),
+              actions: [
+                Row(
+                  children: [
+                    Spacer(),
+                    ElevatedButton(
+                        //Do not delete
+                        onPressed: () {
+                          // setEmptyFields();
+                          Navigator.pop(context);
+                        },
+                        child: Text("No")),
+                    Spacer(),
+                    ElevatedButton(
+                        //Delete
+                        onPressed: () {
+                          // setEmptyFields();
+                          Navigator.pop(context);
+                        },
+                        child: Text("Yes")),
+                    Spacer(),
+                  ],
+                )
+              ],
             ));
   }
 }
