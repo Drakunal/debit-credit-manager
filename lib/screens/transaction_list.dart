@@ -151,7 +151,7 @@ class _TransactionListState extends State<TransactionList> {
                         //Delete
                         onPressed: () {
                           Navigator.pop(context);
-                          _deleteTransaction();
+                          _deleteTransaction(id);
                         },
                         child: Text("Yes")),
                     Spacer(),
@@ -161,7 +161,8 @@ class _TransactionListState extends State<TransactionList> {
             ));
   }
 
-  void _deleteTransaction() {
+  void _deleteTransaction(String id) {
+    DatabaseService(uid: user.uid).deleteSingleTransaction(id);
     showDialog(
         context: context,
         builder: (context) => AlertDialog(

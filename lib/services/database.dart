@@ -122,6 +122,10 @@ class DatabaseService {
     });
   }
 
+  Future deleteSingleTransaction(String id) async {
+    return await transactionCollection.doc(id).delete();
+  }
+
   // Future filter(String filterBy) async {
   //   String filterText = '';
   //   if (filterBy == 'Important') {
