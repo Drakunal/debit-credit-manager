@@ -90,6 +90,10 @@ class _TransactionListState extends State<TransactionList> {
                       ],
                     ),
                     // trailing: const Text("..."),
+                    onLongPress: () {
+                      print("Long Press Done ${transactions[index].id}");
+                      _deleteDialog(transactions[index].id);
+                    },
                     onTap: () {
                       // Navigator.push(
                       //     context,
@@ -121,5 +125,13 @@ class _TransactionListState extends State<TransactionList> {
       print(star.toString());
     }
     DatabaseService(uid: id).updateStar(s);
+  }
+
+  void _deleteDialog(String id) {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Text("Delete this transaction?"),
+            ));
   }
 }
