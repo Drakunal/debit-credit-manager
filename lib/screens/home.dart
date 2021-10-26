@@ -53,7 +53,7 @@ class _HomeState extends State<Home> {
         key: _bottomNavigationKey,
         backgroundColor: Colors.white,
         color: Colors.blue,
-        items: <Widget>[
+        items: [
           Icon(Icons.account_circle_outlined, size: 30),
           Icon(Icons.home, size: 30),
           Icon(Icons.settings, size: 30),
@@ -67,6 +67,4 @@ class _HomeState extends State<Home> {
       body: screens[_page],
     );
   }
-
-  void _a() {}
 }
