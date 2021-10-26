@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +25,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) => ChangeNotifierProvider(
         create: (context) => Authenticate(),
         child: MaterialApp(
-          home: Wrapper(),
+          home: ShowCaseWidget(
+            builder: Builder(builder: (_) => Wrapper()),
+          ),
         ),
       );
 }

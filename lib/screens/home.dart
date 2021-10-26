@@ -6,6 +6,7 @@ import 'package:debit_credit/services/authenticate.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -15,11 +16,21 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final keyOne = GlobalKey();
   final user = FirebaseAuth.instance.currentUser!;
   int _page = 1;
   final screens = [Profile(), MainPage(), Settings()];
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance!
+        .addPostFrameCallback((_) => ShowCaseWidget.of(context)!.startShowCase([
+              keyOne,
+            ]));
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -27,21 +38,25 @@ class _HomeState extends State<Home> {
         actions: [
           Row(
             children: [
-              TextButton(
-                  onPressed: () {
-                    final provider =
-                        Provider.of<Authenticate>(context, listen: false);
-                    provider.logout();
-                  },
-                  child: Row(
-                    children: [
-                      Text("Logout ", style: TextStyle(color: Colors.white)),
-                      Icon(
-                        Icons.logout,
-                        color: Colors.white,
-                      )
-                    ],
-                  )),
+              Showcase(
+                key: keyOne,
+                description: 'Jo',
+                child: TextButton(
+                    onPressed: () {
+                      final provider =
+                          Provider.of<Authenticate>(context, listen: false);
+                      provider.logout();
+                    },
+                    child: Row(
+                      children: [
+                        Text("Logout ", style: TextStyle(color: Colors.white)),
+                        Icon(
+                          Icons.logout,
+                          color: Colors.white,
+                        )
+                      ],
+                    )),
+              ),
             ],
           )
         ],

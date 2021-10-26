@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:debit_credit/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:debit_credit/models/transaction.dart' as t;
+import 'package:showcaseview/showcaseview.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -25,6 +26,7 @@ class _MainPageState extends State<MainPage> {
     "Loan taken",
     "Loan given"
   ];
+  final keyOne = GlobalKey();
 
   String _modeSelected = 'All';
   String _filterMessage = 'Showing all results';
@@ -56,6 +58,15 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    void initState() {
+      super.initState();
+
+      WidgetsBinding.instance!.addPostFrameCallback(
+          (_) => ShowCaseWidget.of(context)!.startShowCase([
+                keyOne,
+              ]));
+    }
+
     if (_modeSelected != 'All') {
       _filterMessage = _FilterMessage;
     } else if (_modeSelected == 'All') {
@@ -67,12 +78,16 @@ class _MainPageState extends State<MainPage> {
       initialData: null,
       value: DatabaseService(uid: user.uid).transactions(_modeSelected),
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          // onPressed: DatabaseService(
-          //   uid: user.uid,
-          // ).onPressed(),
-          onPressed: _addTransaction,
-          child: Icon(Icons.add),
+        floatingActionButton: Showcase(
+          key: keyOne,
+          description: 'Add a new transaction here',
+          child: FloatingActionButton(
+            // onPressed: DatabaseService(
+            //   uid: user.uid,
+            // ).onPressed(),
+            onPressed: _addTransaction,
+            child: Icon(Icons.add),
+          ),
         ),
         body: Container(
           color: Colors.white,
