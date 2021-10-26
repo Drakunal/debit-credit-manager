@@ -150,13 +150,28 @@ class _TransactionListState extends State<TransactionList> {
                     ElevatedButton(
                         //Delete
                         onPressed: () {
-                          // setEmptyFields();
                           Navigator.pop(context);
+                          _deleteTransaction();
                         },
                         child: Text("Yes")),
                     Spacer(),
                   ],
                 )
+              ],
+            ));
+  }
+
+  void _deleteTransaction() {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Text("Deleted!"),
+              actions: [
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text("Ok"))
               ],
             ));
   }
