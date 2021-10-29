@@ -3,9 +3,13 @@ import 'package:debit_credit/screens/main_page.dart';
 import 'package:debit_credit/screens/profile.dart';
 import 'package:debit_credit/screens/settings.dart';
 import 'package:debit_credit/services/authenticate.dart';
+import 'package:debit_credit/services/database.dart';
+import 'package:debit_credit/shared/hexcolor.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'settings.dart' as s;
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -15,6 +19,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  String savedColorOriginal = '#87CEEB';
   final user = FirebaseAuth.instance.currentUser!;
   late Color colors;
   int _page = 1;
@@ -53,7 +58,7 @@ class _HomeState extends State<Home> {
         index: 1,
         key: _bottomNavigationKey,
         backgroundColor: Colors.white,
-        color: Colors.blue,
+        color: getColor(),
         items: [
           Icon(Icons.account_circle_outlined, size: 30),
           Icon(Icons.home, size: 30),
@@ -67,5 +72,22 @@ class _HomeState extends State<Home> {
       ),
       body: screens[_page],
     );
+  }
+
+  getColor() {
+    // String hexColor = getColorValue() ?? '';
+    getColorValue();
+    Color color = HexColor(savedColorOriginal);
+    return color;
+  }
+
+  getColorValue() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String savedColor = prefs.getString('colorName') ?? '#000000';
+    setState(() {
+      savedColorOriginal = savedColor;
+    });
+
+    // return savedColor.toString();
   }
 }
