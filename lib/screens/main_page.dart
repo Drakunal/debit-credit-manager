@@ -92,7 +92,7 @@ class _MainPageState extends State<MainPage> {
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           backgroundColor:
-              // Preference().
+              Preference().
               getColor(), //preference.getcolor not working here
           // onPressed: DatabaseService(
           //   uid: user.uid,
