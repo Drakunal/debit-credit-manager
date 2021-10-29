@@ -16,6 +16,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final user = FirebaseAuth.instance.currentUser!;
+  late Color colors;
   int _page = 1;
   final screens = [Profile(), MainPage(), Settings()];
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
