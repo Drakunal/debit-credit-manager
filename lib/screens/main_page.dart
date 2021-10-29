@@ -1,6 +1,7 @@
 import 'package:debit_credit/screens/addition_page.dart';
 import 'package:debit_credit/screens/dummy.dart';
 import 'package:debit_credit/screens/transaction_list.dart';
+import 'package:debit_credit/services/preferences.dart';
 import 'package:debit_credit/shared/hexcolor.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -71,7 +72,7 @@ class _MainPageState extends State<MainPage> {
       value: DatabaseService(uid: user.uid).transactions(_modeSelected),
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
-          // backgroundColor: getColor(),
+          backgroundColor: Preference().getColor(),
           // onPressed: DatabaseService(
           //   uid: user.uid,
           // ).onPressed(),
@@ -117,23 +118,6 @@ class _MainPageState extends State<MainPage> {
         ),
       ),
     );
-  }
-
-  getColor() {
-    // String hexColor = getColorValue() ?? '';
-    getColorValue();
-    Color color = HexColor(savedColorOriginal);
-    return color;
-  }
-
-  getColorValue() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String savedColor = prefs.getString('colorName') ?? '#000000';
-    setState(() {
-      savedColorOriginal = savedColor;
-    });
-
-    // return savedColor.toString();
   }
 
   _filter() {

@@ -1,3 +1,4 @@
+import 'package:debit_credit/services/preferences.dart';
 import 'package:debit_credit/shared/hexcolor.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,7 +17,7 @@ class _SettingsState extends State<Settings> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getColorValue();
+    colorR = Preference().getColor();
   }
 
   @override
@@ -45,28 +46,28 @@ class _SettingsState extends State<Settings> {
     setState(() {
       if (colorR == blue) {
         colorR = violet;
-        setColorValue("#8F00FF");
+        Preference().setColorValue("#8F00FF");
       } else if (colorR == violet) {
         colorR = green;
-        setColorValue("00FF00");
+        Preference().setColorValue("00FF00");
       } else {
         colorR = blue;
-        setColorValue("#0000FF");
+        Preference().setColorValue("#0000FF");
       }
     });
   }
 
-  setColorValue(String hexCode) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('colorName', hexCode);
-  }
+  // setColorValue(String hexCode) async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   prefs.setString('colorName', hexCode);
+  // }
 
-  getColorValue() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String savedColor = prefs.getString('colorName') ?? '#000000';
-    setState(() {
-      colorR = HexColor(savedColor);
-    });
-    return savedColor;
-  }
+  // getColorValue() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   String savedColor = prefs.getString('colorName') ?? '#000000';
+  //   setState(() {
+  //     colorR = HexColor(savedColor);
+  //   });
+  //   return savedColor;
+  // }
 }

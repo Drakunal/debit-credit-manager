@@ -20,17 +20,18 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  String savedColorOriginal = '#87CEEB';
   final user = FirebaseAuth.instance.currentUser!;
   late Color colors;
+  String savedColorOriginal = '#000000';
   int _page = 1;
   final screens = [Profile(), MainPage(), Settings()];
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: getColor(),
+        backgroundColor: Preference().getColor(),
         title: Text("Savings++"),
         actions: [
           Row(
@@ -60,7 +61,7 @@ class _HomeState extends State<Home> {
         index: 1,
         key: _bottomNavigationKey,
         backgroundColor: Colors.white,
-        color: Preference().getColor(savedColorOriginal),
+        color: getColor(), //not working with pref.getColor
         items: [
           Icon(Icons.account_circle_outlined, size: 30),
           Icon(Icons.home, size: 30),
@@ -79,17 +80,19 @@ class _HomeState extends State<Home> {
   getColor() {
     // String hexColor = getColorValue() ?? '';
     getColorValue();
+
     Color color = HexColor(savedColorOriginal);
+    print('From 1 $savedColorOriginal');
     return color;
   }
 
   getColorValue() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String savedColor = prefs.getString('colorName') ?? '#000000';
+    String savedColor = prefs.getString('colorName') ?? '#FFC0CB';
     setState(() {
       savedColorOriginal = savedColor;
     });
 
-    // return savedColor.toString();
+    print('From 2 $savedColorOriginal');
   }
 }
