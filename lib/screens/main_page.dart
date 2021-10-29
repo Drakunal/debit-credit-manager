@@ -19,7 +19,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  String savedColorOriginal = '#87CEEB';
+  String savedColorOriginal = '#FFFF00';
   final user = FirebaseAuth.instance.currentUser!;
   final modes = [
     "All",
@@ -47,6 +47,25 @@ class _MainPageState extends State<MainPage> {
     }
   }
 
+  getColor() {
+    // String hexColor = getColorValue() ?? '';
+    getColorValue();
+
+    Color color = HexColor(savedColorOriginal);
+    print('From 1 $savedColorOriginal');
+    return color;
+  }
+
+  getColorValue() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String savedColor = prefs.getString('colorName') ?? '#FFFF00';
+    setState(() {
+      savedColorOriginal = savedColor;
+    });
+
+    print('From 2 $savedColorOriginal');
+  }
+
   // void _addTransaction() {
   //   showModalBottomSheet(
   //       context: context,
@@ -72,12 +91,16 @@ class _MainPageState extends State<MainPage> {
       value: DatabaseService(uid: user.uid).transactions(_modeSelected),
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Preference().getColor(),
+          backgroundColor:
+              Preference().getColor(), //preference.getcolor not working here
           // onPressed: DatabaseService(
           //   uid: user.uid,
           // ).onPressed(),
           onPressed: _addTransaction,
-          child: Icon(Icons.add),
+          child: Icon(
+            Icons.add,
+            color: Colors.black,
+          ),
         ),
         body: Container(
           color: Colors.white,

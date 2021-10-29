@@ -21,8 +21,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final user = FirebaseAuth.instance.currentUser!;
-  late Color colors;
-  String savedColorOriginal = '#87b5eb';
+  String savedColorOriginal = '#FFFF00';
   int _page = 1;
   final screens = [Profile(), MainPage(), Settings()];
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
@@ -63,7 +62,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.white,
         color: getColor(), //not working with pref.getColor
         items: [
-          Icon(Icons.account_circle_outlined, size: 30),
+          Icon(Icons.person_rounded, size: 30),
           Icon(Icons.home, size: 30),
           Icon(Icons.settings, size: 30),
         ],
@@ -88,7 +87,7 @@ class _HomeState extends State<Home> {
 
   getColorValue() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String savedColor = prefs.getString('colorName') ?? '#FFC0CB';
+    String savedColor = prefs.getString('colorName') ?? '#FFFF00';
     setState(() {
       savedColorOriginal = savedColor;
     });
