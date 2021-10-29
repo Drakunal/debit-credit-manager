@@ -11,6 +11,7 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  int _fontSizeValue = 10;
   Color colorR = HexColor("#0000FF"); //make it white later on
 
   @override
@@ -29,10 +30,30 @@ class _SettingsState extends State<Settings> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Spacer(),
             CircleAvatar(
               backgroundColor: colorR,
             ),
-            ElevatedButton(onPressed: changeColor, child: Text("Change Color"))
+            ElevatedButton(onPressed: changeColor, child: Text("Change Color")),
+            Spacer(),
+            Slider(
+                value: Preference()
+                    .getFontSize()
+                    .toDouble(), // cannot be a constant value
+                min: 10,
+                max: 20,
+                // activeColor: _text_color,
+                // inactiveColor: _text_color.withOpacity(.4),
+                divisions: 9,
+                label: _fontSizeValue.toString(),
+                onChanged: (double newValue) {
+                  print(newValue.round());
+                  setState(() {
+                    _fontSizeValue = newValue.round();
+                    Preference().setFontSizeValue(_fontSizeValue);
+                  });
+                }),
+            Spacer(),
           ],
         ),
       )),
@@ -70,4 +91,8 @@ class _SettingsState extends State<Settings> {
   //   });
   //   return savedColor;
   // }
+
+  void changeFont(double value) {
+    print(value);
+  }
 }
