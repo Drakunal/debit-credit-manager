@@ -11,6 +11,14 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
   Color colorR = HexColor("#0000FF");
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getColorValue();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,5 +55,14 @@ class _SettingsState extends State<Settings> {
   setColorValue(String hexCode) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('colorName', hexCode);
+  }
+
+  getColorValue() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String savedColor = prefs.getString('colorName') ?? '#000000';
+    setState(() {
+      colorR = HexColor(savedColor);
+    });
+    return savedColor;
   }
 }
