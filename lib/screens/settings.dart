@@ -51,7 +51,7 @@ class _SettingsState extends State<Settings> {
         setColorValue("00FF00");
       } else {
         colorR = blue;
-        setColorValue("#8F00FF");
+        setColorValue("#0000FF");
       }
     });
   }
