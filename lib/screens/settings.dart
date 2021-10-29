@@ -41,13 +41,17 @@ class _SettingsState extends State<Settings> {
   void changeColor() {
     Color violet = HexColor("#8F00FF");
     Color blue = HexColor("#0000FF");
+    Color green = HexColor("00FF00");
     setState(() {
       if (colorR == blue) {
         colorR = violet;
         setColorValue("#8F00FF");
+      } else if (colorR == violet) {
+        colorR = green;
+        setColorValue("00FF00");
       } else {
         colorR = blue;
-        setColorValue("#0000FF");
+        setColorValue("#8F00FF");
       }
     });
   }
