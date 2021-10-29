@@ -41,18 +41,18 @@ class _SettingsState extends State<Settings> {
 
   void changeColor() {
     Color violet = HexColor("#8F00FF");
-    Color blue = HexColor("#0000FF");
+    Color yellow = HexColor("#FFFF00");
     Color green = HexColor("00FF00");
     setState(() {
-      if (colorR == blue) {
+      if (colorR == yellow) {
         colorR = violet;
         Preference().setColorValue("#8F00FF");
       } else if (colorR == violet) {
         colorR = green;
         Preference().setColorValue("00FF00");
       } else {
-        colorR = blue;
-        Preference().setColorValue("#0000FF");
+        colorR = yellow;
+        Preference().setColorValue("#FFFF00");
       }
     });
   }

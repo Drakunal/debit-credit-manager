@@ -22,7 +22,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final user = FirebaseAuth.instance.currentUser!;
   late Color colors;
-  String savedColorOriginal = '#000000';
+  String savedColorOriginal = '#87b5eb';
   int _page = 1;
   final screens = [Profile(), MainPage(), Settings()];
   GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
@@ -32,7 +32,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Preference().getColor(),
-        title: Text("Savings++"),
+        title: Text("Savings++", style: TextStyle(color: Colors.black)),
         actions: [
           Row(
             children: [
@@ -44,10 +44,10 @@ class _HomeState extends State<Home> {
                   },
                   child: Row(
                     children: [
-                      Text("Logout ", style: TextStyle(color: Colors.white)),
+                      Text("Logout ", style: TextStyle(color: Colors.black)),
                       Icon(
                         Icons.logout,
-                        color: Colors.white,
+                        color: Colors.black,
                       )
                     ],
                   )),

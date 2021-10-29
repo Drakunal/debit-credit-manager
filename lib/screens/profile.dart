@@ -1,3 +1,4 @@
+import 'package:debit_credit/services/preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -104,7 +105,7 @@ class _ProfileState extends State<Profile> {
               color: Colors.grey,
               borderRadius: BorderRadius.all(
                   Radius.circular(MediaQuery.of(context).size.width * 0.24)),
-              border: Border.all(color: Colors.blueAccent.shade100, width: 2),
+              border: Border.all(color: Preference().getColor(), width: 2),
               image: DecorationImage(
                   image: NetworkImage(user.photoURL!), fit: BoxFit.cover)),
         ),
@@ -122,7 +123,7 @@ class _ProfileState extends State<Profile> {
             margin:
                 EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.08),
             decoration: BoxDecoration(
-              color: Colors.blueAccent.shade100,
+              color: Preference().getColor(),
               borderRadius: BorderRadius.circular(15),
             ),
             child: Column(

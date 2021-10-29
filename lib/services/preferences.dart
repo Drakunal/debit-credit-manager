@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Preference {
-  static String savedColorOriginal = '#000000';
+  static String savedColorOriginal = '#87b5eb';
   getColor() {
     // String hexColor = getColorValue() ?? '';
     getColorValue();
@@ -15,7 +15,7 @@ class Preference {
 
   getColorValue() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String savedColor = prefs.getString('colorName') ?? '#FFC0CB';
+    String savedColor = prefs.getString('colorName') ?? '#87CEEB';
     savedColorOriginal = savedColor;
     print('From 2 $savedColorOriginal');
   }
