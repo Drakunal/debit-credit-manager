@@ -9,9 +9,9 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future main() async {
-  WidgetsFlutterBinding.ensureInitialized(); //when using shared prefs
+  WidgetsFlutterBinding
+      .ensureInitialized(); //when using shared prefs and firebase
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  WidgetsFlutterBinding.ensureInitialized();
 
   // final user = FirebaseAuth.instance.currentUser!;
 

@@ -10,7 +10,7 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  Color colorR = HexColor("#0000FF");
+  Color colorR = HexColor("#0000FF"); //make it white later on
 
   @override
   void initState() {

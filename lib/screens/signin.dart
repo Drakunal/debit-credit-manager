@@ -47,13 +47,13 @@ class _SignInState extends State<SignIn> {
                   ),
                   label: Text("Sign in using google account")),
 
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Text(
-                  "Already a customer? Log in",
-                  // style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(12.0),
+              //   child: Text(
+              //     "Already a customer? Log in",
+              //     // style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+              //   ),
+              // ),
               Spacer(),
             ],
           ),
