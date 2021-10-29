@@ -4,6 +4,7 @@ import 'package:debit_credit/screens/profile.dart';
 import 'package:debit_credit/screens/settings.dart';
 import 'package:debit_credit/services/authenticate.dart';
 import 'package:debit_credit/services/database.dart';
+import 'package:debit_credit/services/preferences.dart';
 import 'package:debit_credit/shared/hexcolor.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +60,7 @@ class _HomeState extends State<Home> {
         index: 1,
         key: _bottomNavigationKey,
         backgroundColor: Colors.white,
-        color: getColor(),
+        color: Preference().getColor(savedColorOriginal),
         items: [
           Icon(Icons.account_circle_outlined, size: 30),
           Icon(Icons.home, size: 30),
