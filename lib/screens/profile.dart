@@ -117,37 +117,43 @@ class _ProfileState extends State<Profile> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Container(
-            width: MediaQuery.of(context).size.width * 0.7,
-            height: MediaQuery.of(context).size.height * 0.25,
-            margin:
-                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.08),
-            decoration: BoxDecoration(
-              color: Preference().getColor(),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Spacer(),
-                Text(
-                  user.displayName.toString(),
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(user.email.toString(),
-                    style: TextStyle(fontStyle: FontStyle.italic)),
-                Spacer(),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     Icon(Icons.calculate_outlined),
-                //   ],
-                // )
-              ],
-            )),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+              width: MediaQuery.of(context).size.width * 0.7,
+              height: MediaQuery.of(context).size.height * 0.25,
+              margin: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.08),
+              decoration: BoxDecoration(
+                color: Preference().getColor(),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Spacer(),
+                  Text(
+                    user.displayName.toString(),
+                    style: TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(user.email.toString(),
+                        style: TextStyle(fontStyle: FontStyle.italic)),
+                  ),
+                  Spacer(),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     Icon(Icons.calculate_outlined),
+                  //   ],
+                  // )
+                ],
+              )),
+        ),
       ],
     );
   }

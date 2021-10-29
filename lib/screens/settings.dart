@@ -11,7 +11,7 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  int _fontSizeValue = 10;
+  int _fontSizeValue = Preference().getFontSize();
   Color colorR = HexColor("#0000FF"); //make it white later on
 
   @override
@@ -26,35 +26,52 @@ class _SettingsState extends State<Settings> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
-          child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Spacer(),
-            CircleAvatar(
-              backgroundColor: colorR,
-            ),
-            ElevatedButton(onPressed: changeColor, child: Text("Change Color")),
-            Spacer(),
-            Slider(
-                value: Preference()
-                    .getFontSize()
-                    .toDouble(), // cannot be a constant value
-                min: 10,
-                max: 20,
-                // activeColor: _text_color,
-                // inactiveColor: _text_color.withOpacity(.4),
-                divisions: 9,
-                label: _fontSizeValue.toString(),
-                onChanged: (double newValue) {
-                  print(newValue.round());
-                  setState(() {
-                    _fontSizeValue = newValue.round();
-                    Preference().setFontSizeValue(_fontSizeValue);
-                  });
-                }),
-            Spacer(),
-          ],
+          child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Spacer(),
+              CircleAvatar(
+                backgroundColor: colorR,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                  onPressed: changeColor,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Change Color"),
+                  )),
+              Spacer(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                    "Sample Text. Restart the app for the effect to take place",
+                    style: TextStyle(fontSize: _fontSizeValue.toDouble())),
+              ),
+              Slider(
+                  value: Preference()
+                      .getFontSize()
+                      .toDouble(), // cannot be a constant value
+                  min: 10,
+                  max: 30,
+                  // activeColor: _text_color,
+                  // inactiveColor: _text_color.withOpacity(.4),
+                  divisions: 20,
+                  label: _fontSizeValue.toString(),
+                  onChanged: (double newValue) {
+                    print(newValue.round());
+                    setState(() {
+                      _fontSizeValue = newValue.round();
+                      Preference().setFontSizeValue(_fontSizeValue);
+                    });
+                  }),
+              Spacer(),
+            ],
+          ),
         ),
       )),
     );
