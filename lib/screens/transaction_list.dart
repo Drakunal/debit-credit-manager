@@ -92,8 +92,8 @@ class _TransactionListState extends State<TransactionList> {
                 children: [
                   Card(
                     elevation: 4.5,
-                    shadowColor: Colors.black,
-                    color: Colors.grey,
+                    // shadowColor: Colors.black,
+                    // color: Preference().getColor().withAlpha(100),
                     child: ListTile(
                       title: Text(
                         transactions![index].details,
