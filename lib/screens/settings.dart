@@ -58,10 +58,10 @@ class _SettingsState extends State<Settings> {
                       .getFontSize()
                       .toDouble(), // cannot be a constant value
                   min: 10,
-                  max: 30,
+                  max: 24,
                   // activeColor: _text_color,
                   // inactiveColor: _text_color.withOpacity(.4),
-                  divisions: 20,
+                  divisions: 14,
                   label: _fontSizeValue.toString(),
                   onChanged: (double newValue) {
                     print(newValue.round());

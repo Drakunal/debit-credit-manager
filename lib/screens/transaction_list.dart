@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:debit_credit/models/transaction.dart' as t;
 import 'package:debit_credit/services/database.dart';
+import 'package:debit_credit/services/preferences.dart';
 import 'package:debit_credit/shared/hexcolor.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +67,10 @@ class _TransactionListState extends State<TransactionList> {
                   shadowColor: Colors.black,
                   color: Colors.grey[100],
                   child: ListTile(
-                    title: Text(transactions![index].details),
+                    title: Text(
+                      transactions![index].details,
+                      style: TextStyle(color: Preference().getColor()),
+                    ),
                     // title: Text(transactions.docs[index]['strength'].toString()),
                     subtitle: Text(
                         '${transactions[index].type}: ${DateFormat('dd/MM/yyyy').format(transactions[index].date).toString()}'),

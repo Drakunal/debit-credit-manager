@@ -20,6 +20,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   String savedColorOriginal = '#FFFF00';
+  Color color1 = Preference().getColor();
   final user = FirebaseAuth.instance.currentUser!;
   final modes = [
     "All",
@@ -91,9 +92,7 @@ class _MainPageState extends State<MainPage> {
       value: DatabaseService(uid: user.uid).transactions(_modeSelected),
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
-          backgroundColor:
-              Preference().
-              getColor(), //preference.getcolor not working here
+          backgroundColor: color1, //preference.getcolor not working here
           // onPressed: DatabaseService(
           //   uid: user.uid,
           // ).onPressed(),
