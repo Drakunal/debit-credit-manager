@@ -26,7 +26,7 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: colorR.withAlpha(1),
       body: Container(
           child: Padding(
         padding: const EdgeInsets.all(8.0),

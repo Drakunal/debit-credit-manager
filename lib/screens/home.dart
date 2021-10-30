@@ -29,6 +29,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Preference().getColor().withAlpha(40),
       appBar: AppBar(
         backgroundColor: Preference().getColor(),
         title: Text("Savings++", style: TextStyle(color: Colors.black)),
