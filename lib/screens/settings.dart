@@ -60,8 +60,8 @@ class _SettingsState extends State<Settings> {
                       .toDouble(), // cannot be a constant value
                   min: 10,
                   max: 24,
-                  // activeColor: _text_color,
-                  // inactiveColor: _text_color.withOpacity(.4),
+                  activeColor: colorR,
+                  inactiveColor: colorR.withOpacity(.4),
                   divisions: 14,
                   label: _fontSizeValue.toString(),
                   onChanged: (double newValue) {
