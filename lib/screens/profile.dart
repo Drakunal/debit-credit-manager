@@ -14,7 +14,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Preference().getColor().withAlpha(40),
+      backgroundColor: Preference().getColor().withAlpha(1),
       body: Center(
         child: Stack(
           children: [_getCard(), _getAvatar()],
