@@ -88,18 +88,18 @@ class _SettingsState extends State<Settings> {
 
   void changeColor() {
     HapticFeedback.heavyImpact();
-    Color violet = HexColor("#8F00FF");
+    Color violet = HexColor("#c362fe");
     Color yellow = HexColor("#FFFF00");
-    Color green = HexColor("00FF00");
+    Color green = HexColor("#90ee90");
     Color pink = HexColor("#FFC0CB");
 
     setState(() {
       if (colorR == yellow) {
         colorR = violet;
-        Preference().setColorValue("#8F00FF");
+        Preference().setColorValue("#c362fe");
       } else if (colorR == violet) {
         colorR = green;
-        Preference().setColorValue("00FF00");
+        Preference().setColorValue("#90ee90");
       } else if (colorR == green) {
         colorR = pink;
         Preference().setColorValue("#FFC0CB");
