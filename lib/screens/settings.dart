@@ -3,7 +3,7 @@ import 'package:debit_credit/shared/hexcolor.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:restart_app/restart_app.dart';
-// import 'package:flutter/services.dart';
+import 'package:flutter/services.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -65,7 +65,7 @@ class _SettingsState extends State<Settings> {
                   divisions: 14,
                   label: _fontSizeValue.toString(),
                   onChanged: (double newValue) {
-                    // HapticFeedback.heavyImpact();
+                    HapticFeedback.mediumImpact();
                     print(newValue.round());
                     setState(() {
                       _fontSizeValue = newValue.round();
@@ -87,7 +87,7 @@ class _SettingsState extends State<Settings> {
   }
 
   void changeColor() {
-    // HapticFeedback.heavyImpact();
+    HapticFeedback.heavyImpact();
     Color violet = HexColor("#8F00FF");
     Color yellow = HexColor("#FFFF00");
     Color green = HexColor("00FF00");
