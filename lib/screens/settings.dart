@@ -2,6 +2,7 @@ import 'package:debit_credit/services/preferences.dart';
 import 'package:debit_credit/shared/hexcolor.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:restart_app/restart_app.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -69,6 +70,12 @@ class _SettingsState extends State<Settings> {
                       Preference().setFontSizeValue(_fontSizeValue);
                     });
                   }),
+              ElevatedButton(
+                  onPressed: restart,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Restart App"),
+                  )),
               Spacer(),
             ],
           ),
@@ -111,5 +118,9 @@ class _SettingsState extends State<Settings> {
 
   void changeFont(double value) {
     print(value);
+  }
+
+  void restart() {
+    Restart.restartApp();
   }
 }
