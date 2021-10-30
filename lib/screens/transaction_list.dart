@@ -69,7 +69,7 @@ class _TransactionListState extends State<TransactionList> {
                   child: ListTile(
                     title: Text(
                       transactions![index].details,
-                      style: TextStyle(color: Preference().getColor()),
+                      // style: TextStyle(color: Preference().getColor()),
                     ),
                     // title: Text(transactions.docs[index]['strength'].toString()),
                     subtitle: Text(
