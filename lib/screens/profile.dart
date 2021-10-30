@@ -125,7 +125,7 @@ class _ProfileState extends State<Profile> {
               margin: EdgeInsets.only(
                   top: MediaQuery.of(context).size.height * 0.08),
               decoration: BoxDecoration(
-                color: Preference().getColor(),
+                color: Preference().getColor().withAlpha(40),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Column(

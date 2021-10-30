@@ -59,7 +59,7 @@ class _HomeState extends State<Home> {
         height: 65,
         index: 1,
         key: _bottomNavigationKey,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white.withOpacity(0),
         color: getColor(), //not working with pref.getColor
         items: [
           Icon(Icons.person_rounded, size: 30),
@@ -81,7 +81,7 @@ class _HomeState extends State<Home> {
     getColorValue();
 
     Color color = HexColor(savedColorOriginal);
-    print('From 1 $savedColorOriginal');
+    // print('From 1 $savedColorOriginal');
     return color;
   }
 
@@ -92,6 +92,6 @@ class _HomeState extends State<Home> {
       savedColorOriginal = savedColor;
     });
 
-    print('From 2 $savedColorOriginal');
+    // print('From 2 $savedColorOriginal');
   }
 }

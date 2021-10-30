@@ -10,7 +10,7 @@ class Preference {
     getColorValue();
 
     Color color = HexColor(savedColorOriginal);
-    print('From 1 $savedColorOriginal');
+    // print('From 1 $savedColorOriginal');
     return color;
   }
 
@@ -18,7 +18,7 @@ class Preference {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String savedColor = prefs.getString('colorName') ?? '#FFFF00';
     savedColorOriginal = savedColor;
-    print('From 2 $savedColorOriginal');
+    // print('From 2 $savedColorOriginal');
   }
 
   setColorValue(String hexCode) async {
@@ -31,7 +31,7 @@ class Preference {
     getFontSizeValue();
 
     // Color color = HexColor(savedColorOriginal);
-    print('From 1 $savedFontSizeOriginal');
+    // print('From 1 $savedFontSizeOriginal');
     return savedFontSizeOriginal;
   }
 
@@ -39,7 +39,7 @@ class Preference {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int tempSize = prefs.getInt('fontSizeValue') ?? 12;
     savedFontSizeOriginal = tempSize;
-    print('From 2 $savedFontSizeOriginal');
+    // print('From 2 $savedFontSizeOriginal');
   }
 
   setFontSizeValue(int size) async {

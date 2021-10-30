@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:debit_credit/models/transaction.dart' as t;
+import 'package:debit_credit/screens/addition_page.dart';
 import 'package:debit_credit/services/database.dart';
 import 'package:debit_credit/services/preferences.dart';
 import 'package:debit_credit/shared/hexcolor.dart';
@@ -18,6 +19,19 @@ class TransactionList extends StatefulWidget {
 class _TransactionListState extends State<TransactionList> {
   late Stream<List<t.Transaction>?> data;
   final user = FirebaseAuth.instance.currentUser!;
+
+  _addTransaction() {
+    showModalBottomSheet(context: context, builder: (context) => Addition());
+  }
+
+  _addMultipleTransaction() {
+    List fakeModes = ['Credit', 'Debit', 'Loan given', 'Loan taken'];
+    for (int i = 0; i < 1000; i++) {
+      DatabaseService(uid: user.uid).updateTransaction("Details number $i",
+          fakeModes[i % 4], (1000 + i).toDouble(), DateTime.now());
+    }
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -55,66 +69,81 @@ class _TransactionListState extends State<TransactionList> {
     //   return Center(child: CircularProgressIndicator());
     // }
 
-    return ListView.builder(
-        itemCount: len,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Card(
-                  elevation: 4.5,
-                  shadowColor: Colors.black,
-                  color: Colors.grey[100],
-                  child: ListTile(
-                    title: Text(
-                      transactions![index].details,
-                      // style: TextStyle(color: Preference().getColor()),
-                    ),
-                    // title: Text(transactions.docs[index]['strength'].toString()),
-                    subtitle: Text(
-                        '${transactions[index].type}: ${DateFormat('dd/MM/yyyy').format(transactions[index].date).toString()}'),
-                    leading: Text(
-                        '₹ ${transactions[index].amount.round().toString()}'),
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor:
+            Preference().getColor(), //preference.getcolor not working here
+        // onPressed: DatabaseService(
+        //   uid: user.uid,
+        // ).onPressed(),
+        onPressed: _addTransaction,
+        child: Icon(
+          Icons.add,
+          color: Colors.black,
+        ),
+      ),
+      backgroundColor: Preference().getColor().withAlpha(40),
+      body: ListView.builder(
+          itemCount: len,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Card(
+                    elevation: 4.5,
+                    shadowColor: Colors.black,
+                    color: Colors.grey,
+                    child: ListTile(
+                      title: Text(
+                        transactions![index].details,
+                        // style: TextStyle(color: Preference().getColor()),
+                      ),
+                      // title: Text(transactions.docs[index]['strength'].toString()),
+                      subtitle: Text(
+                          '${transactions[index].type}: ${DateFormat('dd/MM/yyyy').format(transactions[index].date).toString()}'),
+                      leading: Text(
+                          '₹ ${transactions[index].amount.round().toString()}'),
 
-                    trailing: Column(
-                      children: [
-                        // Text(
-                        //     '${DateFormat('dd/MM/yyyy').format(transactions[index].date).toString()}'),
-                        // Text('₹ ${transactions[index].amount.round().toString()}'),
-                        IconButton(
-                            icon: Icon(
-                              Icons.star,
-                              color: transactions[index].star,
-                            ),
-                            onPressed: () {
-                              _starToggle(transactions[index].id,
-                                  transactions[index].star);
-                            }),
-                      ],
+                      trailing: Column(
+                        children: [
+                          // Text(
+                          //     '${DateFormat('dd/MM/yyyy').format(transactions[index].date).toString()}'),
+                          // Text('₹ ${transactions[index].amount.round().toString()}'),
+                          IconButton(
+                              icon: Icon(
+                                Icons.star,
+                                color: transactions[index].star,
+                              ),
+                              onPressed: () {
+                                _starToggle(transactions[index].id,
+                                    transactions[index].star);
+                              }),
+                        ],
+                      ),
+                      // trailing: const Text("..."),
+                      onLongPress: () {
+                        print("Long Press Done ${transactions[index].id}");
+                        _deleteDialog(transactions[index].id);
+                      },
+                      onTap: () {
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => MovieListViewDetails(
+                        //               movieName: movieList.elementAt(index).title,
+                        //               movie: movieList[index],
+                        //             )));
+                      },
+                      // onTap: () =>
+                      //     debugPrint("The movie name is ${movies.elementAt(index)}"),
                     ),
-                    // trailing: const Text("..."),
-                    onLongPress: () {
-                      print("Long Press Done ${transactions[index].id}");
-                      _deleteDialog(transactions[index].id);
-                    },
-                    onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) => MovieListViewDetails(
-                      //               movieName: movieList.elementAt(index).title,
-                      //               movie: movieList[index],
-                      //             )));
-                    },
-                    // onTap: () =>
-                    //     debugPrint("The movie name is ${movies.elementAt(index)}"),
                   ),
-                ),
-              ],
-            ),
-          );
-        });
+                ],
+              ),
+            );
+          }),
+    );
   }
 
   _starToggle(String id, Color star) {

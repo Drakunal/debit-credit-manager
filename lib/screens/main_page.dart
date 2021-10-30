@@ -53,7 +53,7 @@ class _MainPageState extends State<MainPage> {
     getColorValue();
 
     Color color = HexColor(savedColorOriginal);
-    print('From 1 $savedColorOriginal');
+    // print('From 1 $savedColorOriginal');
     return color;
   }
 
@@ -64,7 +64,7 @@ class _MainPageState extends State<MainPage> {
       savedColorOriginal = savedColor;
     });
 
-    print('From 2 $savedColorOriginal');
+    // print('From 2 $savedColorOriginal');
   }
 
   // void _addTransaction() {
@@ -91,17 +91,18 @@ class _MainPageState extends State<MainPage> {
       initialData: null,
       value: DatabaseService(uid: user.uid).transactions(_modeSelected),
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: color1, //preference.getcolor not working here
-          // onPressed: DatabaseService(
-          //   uid: user.uid,
-          // ).onPressed(),
-          onPressed: _addTransaction,
-          child: Icon(
-            Icons.add,
-            color: Colors.black,
-          ),
-        ),
+        backgroundColor: color1,
+        // floatingActionButton: FloatingActionButton(
+        //   backgroundColor: color1, //preference.getcolor not working here
+        //   // onPressed: DatabaseService(
+        //   //   uid: user.uid,
+        //   // ).onPressed(),
+        //   onPressed: _addTransaction,
+        //   child: Icon(
+        //     Icons.add,
+        //     color: Colors.black,
+        //   ),
+        // ),
         body: Container(
           color: Colors.white,
           child: Column(
